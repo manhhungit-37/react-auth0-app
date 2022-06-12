@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
+
+import CustomAuth0Provider from './containers/CustomAuth0Provider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <CustomAuth0Provider>
+        <App />
+      </CustomAuth0Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

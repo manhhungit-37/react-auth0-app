@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React, { Suspense } from 'react';
 import './App.css';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { ROUTES } from 'constants/routes';
+
+// guards
+import AuthGuard from 'guards/AuthGuard';
+import GuestGuard from 'guards/GuestGuard';
+
+//modules
+import Layout from 'core/layout/Layout';
+import Login from 'modules/Auth/Login/Login';
+import Home from 'modules/Home/Home';
+import Callback from 'modules/Auth/Callback/Callback';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={null}>
+      <div className="App">
+        <Routes>
+          <Route path={ROUTES.login} element={(<GuestGuard><Login /></GuestGuard>)} />
+          <Route path={ROUTES.home} element={(<AuthGuard><Home /></AuthGuard>)} />
+          <Route path={ROUTES.callback} element={(<GuestGuard><Callback /></GuestGuard>)} />
+          <Route path="/" element={<GuestGuard><Layout /></GuestGuard>} >
+            <Route index element={<Navigate to={ROUTES.home} />} />
+          </Route>
+        </Routes>
+      </div>
+    </Suspense>
   );
 }
 

@@ -1,0 +1,87 @@
+{
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "import",
+    "jsx-a11y",
+    "prettier",
+    "react-hooks",
+    "eslint-plugin-react"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["src", "node_modules"]
+      }
+    }
+  },
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "react/prop-types": 0,
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "no-extra-semi": 2,
+    "max-len": [2, 130, {
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreComments": true
+    }],
+    "consistent-return": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "no-restricted-exports": 0,
+    "no-param-reassign": [0, { "extensions": ["slice.ts"] }],
+    "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+            "js": "never",
+            "jsx": "never",
+            "ts": "never",
+            "tsx": "never"
+        }
+    ],
+    "react/jsx-props-no-spreading": 0,
+    "no-unused-vars": ["error", { "args": "none" }],
+    "jsx-a11y/label-has-associated-control": [ "error", {
+        "required": {
+          "some": [ "nesting", "id"  ]
+        }
+    }],
+    "jsx-a11y/label-has-for": [ "error", {
+        "required": {
+          "some": [ "nesting", "id"  ]
+        }
+    }],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "linebreak-style": 0
+  }
+}
